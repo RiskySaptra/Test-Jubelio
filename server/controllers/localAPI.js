@@ -23,3 +23,12 @@ exports.indexDataLocal = async (req, h) => {
   const datass = await Product.findAll();
   return datass;
 };
+
+exports.deleteLocal = async (req, h) => {
+  await Product.destroy({
+    where: {
+      id: req.payload.id,
+    },
+  });
+  return { msg: "succses" };
+};

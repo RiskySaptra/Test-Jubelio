@@ -1,8 +1,9 @@
 import React from "react";
-
-import { Grid, Typography, Paper, Button } from "@material-ui/core";
+import { Grid, Typography, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import DetailsDialog from "./ProductComponent/DetailsDialog";
+import ProductDelete from "./ProductComponent/ProductDelete";
+import ProductEdit from "./ProductComponent/ProductEdit";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
 
 const ProductCard = ({ data, loading, source }) => {
   const classes = useStyles();
-  console.log(loading);
 
   if (loading === false) {
     return (
@@ -80,12 +80,13 @@ const ProductCard = ({ data, loading, source }) => {
                         </Grid>
                         {source === "local" ? (
                           <Grid item>
-                            <Button color="primary" size="small">
-                              delete
-                            </Button>
-                            <Button color="primary" size="small">
+                            <Grid container>
+                              <ProductDelete data={item} />
+                              <ProductEdit data={item} />
+                            </Grid>
+                            {/* <Button color="primary" size="small">
                               edit
-                            </Button>
+                            </Button> */}
                           </Grid>
                         ) : (
                           <></>

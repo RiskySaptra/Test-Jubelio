@@ -39,3 +39,8 @@ server.route({
   path: "/addAllLocal",
   handler: localAPI.addAllLocal,
 });
+server.route({
+  method: "DELETE",
+  path: "/deleteLocal",
+  handler: localAPI.deleteLocal,
+});
