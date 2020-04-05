@@ -32,3 +32,31 @@ exports.deleteLocal = async (req, h) => {
   });
   return { msg: "succses" };
 };
+exports.updateLocal = async (req, h) => {
+  console.log(req.payload);
+  const { productName, image, productDetails, price, SKU } = req.payload.datass;
+  try {
+    await Product.update(
+      {
+        // productName: req.payload.data.productName,
+        // image: req.payload.data.image,
+        // productDetails: req.payload.data.productDetails,
+        // price: req.payload.data.price,
+        // SKU: req.payload.data.SKU,
+        productName,
+        image,
+        productDetails,
+        price,
+        SKU,
+      },
+      {
+        where: {
+          id: req.payload.datass.id,
+        },
+      }
+    );
+    return { msg: "succses" };
+  } catch (error) {
+    console.log(error);
+  }
+};

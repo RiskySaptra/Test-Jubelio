@@ -44,3 +44,14 @@ server.route({
   path: "/deleteLocal",
   handler: localAPI.deleteLocal,
 });
+server.route({
+  method: "PUT",
+  path: "/updateLocal",
+  config: {
+    cors: {
+      origin: ["*"],
+      additionalHeaders: ["cache-control", "x-requested-with"],
+    },
+  },
+  handler: localAPI.updateLocal,
+});
