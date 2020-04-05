@@ -96,8 +96,10 @@ const Home = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [dataProduct, setDataProduct] = useState([]);
+  console.log(dataProduct);
 
   const [loading, setloading] = useState(true);
+  const [source, setSource] = useState("");
   // console.log(dataProduct);
 
   const [waitingData, setWaitingData] = useState(false);
@@ -106,14 +108,29 @@ const Home = () => {
     setWaitingData(true);
     setloading(true);
     await axios.get("http://192.168.1.20:8000/indexData").then((res) => {
+      setSource("ext");
       setDataProduct(res.data);
       setloading(false);
     });
+  };
+  const updateDataLocal = async () => {
+    setWaitingData(true);
+    setloading(true);
+
+    await axios
+      .post("http://192.168.1.20:8000/addAllLocal", { dataProduct })
+      .then((res) => {
+        setDataProduct(res.data);
+        console.log(res);
+
+        setloading(false);
+      });
   };
   const getDataLocal = async () => {
     setWaitingData(true);
     setloading(true);
     await axios.get("http://192.168.1.20:8000/indexDataLocal").then((res) => {
+      setSource("local");
       setDataProduct(res.data);
       setloading(false);
     });
@@ -194,7 +211,7 @@ const Home = () => {
             </ListItemIcon>
             <ListItemText primary={"Data From Elevenia"} />
           </ListItem>
-          <ListItem button>
+          <ListItem button onClick={updateDataLocal}>
             <ListItemIcon>
               <InboxIcon style={{ color: "white" }} />
             </ListItemIcon>
@@ -235,7 +252,7 @@ const Home = () => {
         <div className={classes.toolbar} />
         <Grid container justify="center" spacing={5}>
           {waitingData === true ? (
-            <ProductCard data={dataProduct} loading={loading} />
+            <ProductCard data={dataProduct} loading={loading} source={source} />
           ) : (
             <h2>Silahkan Pilih Sumber Data</h2>
           )}

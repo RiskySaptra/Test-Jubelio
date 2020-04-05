@@ -28,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductCard = ({ data, loading }) => {
+const ProductCard = ({ data, loading, source }) => {
   const classes = useStyles();
   console.log(loading);
 
-  if (loading == false) {
+  if (loading === false) {
     return (
       <>
         <Grid container direction="row" justify="center" alignItems="center">
@@ -69,10 +69,6 @@ const ProductCard = ({ data, loading }) => {
                       <Typography variant="body2" gutterBottom>
                         {item.productName}
                       </Typography>
-
-                      {/* <Typography variant="body2" gutterBottom>
-                        {item.productDetails}
-                      </Typography> */}
                     </Grid>
                     <Grid item style={{ maxWidth: "100%" }}>
                       <Grid container direction="column">
@@ -82,14 +78,18 @@ const ProductCard = ({ data, loading }) => {
                           </Typography>
                           <DetailsDialog data={item.productDetails} />
                         </Grid>
-                        {/* <Grid item>
-                          <Button color="primary" size="small">
-                            delete
-                          </Button>
-                          <Button color="primary" size="small">
-                            edit
-                          </Button>
-                        </Grid> */}
+                        {source === "local" ? (
+                          <Grid item>
+                            <Button color="primary" size="small">
+                              delete
+                            </Button>
+                            <Button color="primary" size="small">
+                              edit
+                            </Button>
+                          </Grid>
+                        ) : (
+                          <></>
+                        )}
                       </Grid>
                     </Grid>
                   </Grid>

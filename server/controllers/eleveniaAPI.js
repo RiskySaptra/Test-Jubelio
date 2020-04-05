@@ -11,7 +11,7 @@ exports.indexData = async (request, h) => {
   };
   // callback
   const listProduct = await axios.get(
-    "http://api.elevenia.co.id/rest/prodservices/product/listing?page=1",
+    "http://api.elevenia.co.id/rest/prodservices/product/listing?page=2",
     {
       headers: value,
     }
@@ -38,11 +38,15 @@ exports.indexData = async (request, h) => {
             headers: value,
           }
         ),
-      ]).then(([productRes, stockRes]) => {
+        (index = i + 1),
+      ]).then(([productRes, stockRes, index]) => {
+        // console.log(index);
+
         // console.log(productRes, stockRes);
         const parseProduct = parser.toJson(productRes.data, options);
         const parsedStock = parser.toJson(stockRes.data, options);
 
+        const id = index;
         const productNo = parseProduct.Product.prdNo;
         const productName = parseProduct.Product.prdNm;
         const price = parseProduct.Product.selPrc;
@@ -51,6 +55,7 @@ exports.indexData = async (request, h) => {
         const SKU = parsedStock.ProductStocks.sellerPrdCd;
 
         datass.push({
+          id,
           productNo,
           productName,
           image,
@@ -62,6 +67,6 @@ exports.indexData = async (request, h) => {
     );
   }
   return Promise.all(promises).then(() =>
-    datass.sort((a, b) => parseFloat(a.productNo) - parseFloat(b.productNo))
+    datass.sort((a, b) => parseFloat(a.id) - parseFloat(b.id))
   );
 };
