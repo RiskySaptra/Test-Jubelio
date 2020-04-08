@@ -54,7 +54,11 @@ For the server setup, first, make sure your MySQL services is running fine. In `
   },
 ```
 
-creating the database using command `npx sequelize db:create`
+Creating the database using command
+`npx sequelize db:create`
+
+Migrating all the model
+`npx sequelize-cli db:migrate`
 
 ### ReactJs_client
 
