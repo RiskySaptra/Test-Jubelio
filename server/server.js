@@ -5,6 +5,7 @@ const localAPI = require("./controllers/localApi");
 
 const server = Hapi.server({
   port: 8000,
+  host: "localhost",
   routes: {
     cors: true,
   },
@@ -12,7 +13,7 @@ const server = Hapi.server({
 
 server.start();
 
-console.log("Server running on ");
+console.log("Server running on %s", server.info.uri);
 // Home
 server.route({
   method: "GET",

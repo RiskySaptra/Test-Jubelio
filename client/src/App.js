@@ -107,7 +107,7 @@ const Home = () => {
   const getData = async () => {
     setWaitingData(true);
     setloading(true);
-    await axios.get("http://192.168.1.20:8000/indexData").then((res) => {
+    await axios.get("http://localhost:8000/indexData").then((res) => {
       setSource("ext");
       setDataProduct(res.data);
       setloading(false);
@@ -118,7 +118,7 @@ const Home = () => {
     setloading(true);
 
     await axios
-      .post("http://192.168.1.20:8000/addAllLocal", { dataProduct })
+      .post("http://localhost:8000/addAllLocal", { dataProduct })
       .then((res) => {
         setDataProduct(res.data);
         console.log(res);
@@ -129,7 +129,7 @@ const Home = () => {
   const getDataLocal = async () => {
     setWaitingData(true);
     setloading(true);
-    await axios.get("http://192.168.1.20:8000/indexDataLocal").then((res) => {
+    await axios.get("http://localhost:8000/indexDataLocal").then((res) => {
       setSource("local");
       setDataProduct(res.data);
       setloading(false);

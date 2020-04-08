@@ -17,7 +17,6 @@ export default function ProductEdit({ data }) {
     price: null,
     SKU: null,
   });
-  console.log(datass);
 
   const handleChange = (e) => {
     setDatass({ ...datass, [e.target.name]: e.target.value });
