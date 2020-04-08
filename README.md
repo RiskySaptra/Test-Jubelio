@@ -25,14 +25,13 @@ Make sure all of these are properly installed in your system.
 | Git         | [Windows](https://git-scm.com/downloads) / [Linux](https://git-scm.com/download/linux) |
 | Node.js     | [Link](https://nodejs.org/en/download/)                                                |
 | React.js    | [Link](https://reactjs.org)                                                            |
-| MySQL       | [Link](https://www.mysql.com/downloads/)                                               |
 
 ### Installation
 
 First, clone this repository into your system.
 
 ```
-git clone https://github.com/RiskySaptra/dw14qwo0n_landTick
+git clone https://github.com/RiskySaptra/Test-Jubelio
 ```
 
 Then, install all the packages that described in `package.json` of both `client` For ReactJs Front-end and `server` directories for the Back-end .
