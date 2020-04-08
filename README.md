@@ -65,9 +65,7 @@ npm start
 ### Run the server
 
 ```
-
 npm start
-
 ```
 
 ## Screenshots
