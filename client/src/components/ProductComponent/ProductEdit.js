@@ -31,7 +31,9 @@ export default function ProductEdit({ data }) {
   };
 
   const handleUpdate = async () => {
-    await axios.put("localhost/updateLocal", { datass }).then(setOpen(false));
+    await axios
+      .put("http://localhost:8000/updateLocal", { datass })
+      .then(setOpen(false));
   };
 
   return (

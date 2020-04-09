@@ -100,7 +100,6 @@ const Home = () => {
 
   const [loading, setloading] = useState(true);
   const [source, setSource] = useState("");
-  // console.log(dataProduct);
 
   const [waitingData, setWaitingData] = useState(false);
 

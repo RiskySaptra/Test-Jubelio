@@ -7,10 +7,10 @@ exports.addAllLocal = async (req, h) => {
       returning: true,
       updateOnDuplicate: [
         "productName",
+        "image",
         "productDetails",
         "price",
         "SKU",
-        "created_at",
       ],
     });
 
@@ -38,11 +38,6 @@ exports.updateLocal = async (req, h) => {
   try {
     await Product.update(
       {
-        // productName: req.payload.data.productName,
-        // image: req.payload.data.image,
-        // productDetails: req.payload.data.productDetails,
-        // price: req.payload.data.price,
-        // SKU: req.payload.data.SKU,
         productName,
         image,
         productDetails,

@@ -38,7 +38,7 @@ const ProductCard = ({ data, loading, source }) => {
       <>
         <Grid container direction="row" justify="center" alignItems="center">
           {data.map((item) => (
-            <Paper className={classes.paper} key={item.productNo}>
+            <Paper className={classes.paper} key={item.id}>
               <Grid
                 container
                 direction="column"

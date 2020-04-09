@@ -8,9 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      productNo: {
-        type: Sequelize.STRING,
-      },
       productName: {
         type: Sequelize.STRING,
       },
@@ -18,7 +15,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       productDetails: {
-        type: Sequelize.STRING(10000),
+        type: Sequelize.STRING(10485760),
       },
       price: {
         type: Sequelize.STRING,
