@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Typography, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+
 import DetailsDialog from "./ProductComponent/DetailsDialog";
 import ProductDelete from "./ProductComponent/ProductDelete";
 import ProductEdit from "./ProductComponent/ProductEdit";
@@ -84,9 +85,6 @@ const ProductCard = ({ data, loading, source }) => {
                               <ProductDelete data={item} />
                               <ProductEdit data={item} />
                             </Grid>
-                            {/* <Button color="primary" size="small">
-                              edit
-                            </Button> */}
                           </Grid>
                         ) : (
                           <></>

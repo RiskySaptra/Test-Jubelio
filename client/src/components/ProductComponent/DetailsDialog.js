@@ -1,7 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
+import { Button, Dialog } from "@material-ui/core";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
@@ -56,11 +55,8 @@ const DialogActions = withStyles((theme) => ({
 export default function DetailsDialog({ data }) {
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
+  const handleClick = () => {
+    setOpen(!open);
   };
 
   return (
@@ -69,19 +65,13 @@ export default function DetailsDialog({ data }) {
         variant="outlined"
         color="primary"
         size="small"
-        onClick={handleClickOpen}
+        onClick={handleClick}
         fullWidth
       >
         details
       </Button>
-      <Dialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
-      >
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Details
-        </DialogTitle>
+      <Dialog onClose={handleClick} open={open}>
+        <DialogTitle onClose={handleClick}>Details</DialogTitle>
         <DialogContent dividers>
           <div
             className="content"
@@ -89,7 +79,7 @@ export default function DetailsDialog({ data }) {
           ></div>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
+          <Button autoFocus onClick={handleClick} color="primary">
             Close
           </Button>
         </DialogActions>

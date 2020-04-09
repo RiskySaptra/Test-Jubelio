@@ -1,25 +1,18 @@
-import React from "react";
-
+import React, { useState } from "react";
 import axios from "axios";
 
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import { Button, Dialog, DialogActions } from "@material-ui/core";
 
 export default function ProductDelete({ data }) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleClick = () => {
+    setOpen(!open);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
   const handleDelete = async () => {
     await axios
-      .delete("http://192.168.1.20:8000/deleteLocal", { data })
+      .delete("http://localhost:8000/deleteLocal", { data })
       .then(() => {
         setOpen(false);
         window.location.reload();
@@ -27,21 +20,21 @@ export default function ProductDelete({ data }) {
   };
 
   return (
-    <div>
-      <Button color="primary" size="small" onClick={handleClickOpen}>
+    <>
+      <Button color="primary" size="small" onClick={handleClick}>
         Delete
       </Button>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Are You Sure</DialogTitle>
+      <Dialog open={open} onClose={handleClick}>
         <DialogActions>
+          <p>Are you sure ?</p>
           <Button onClick={handleDelete} color="primary">
-            Oklay
+            Yes
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
-            Nope
+          <Button onClick={handleClick} color="primary" autoFocus>
+            No
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }
