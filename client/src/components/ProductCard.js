@@ -1,4 +1,6 @@
 import React from "react";
+
+import idf, { toRupiah } from "indo-formatter";
 import { Grid, Typography, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -75,7 +77,7 @@ const ProductCard = ({ data, loading, source }) => {
                       <Grid container direction="column">
                         <Grid item style={{ marginBottom: "5px" }}>
                           <Typography variant="body2" gutterBottom>
-                            Rp. {item.price}
+                            {toRupiah(item.price, false)}
                           </Typography>
                           <DetailsDialog data={item.productDetails} />
                         </Grid>
