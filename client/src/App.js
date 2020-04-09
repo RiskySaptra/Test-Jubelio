@@ -96,7 +96,7 @@ const Home = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [dataProduct, setDataProduct] = useState([]);
-  console.log(dataProduct);
+  console.log(dataProduct.length);
 
   const [loading, setloading] = useState(true);
   const [source, setSource] = useState("");

@@ -72,7 +72,7 @@ export default function DetailsDialog({ data }) {
       </Button>
       <Dialog onClose={handleClick} open={open}>
         <DialogTitle onClose={handleClick}>Details</DialogTitle>
-        <DialogContent dividers>
+        <DialogContent dividers style={{ minWidth: "400px" }}>
           <div
             className="content"
             dangerouslySetInnerHTML={{ __html: data }}

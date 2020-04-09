@@ -6,6 +6,7 @@ import {
   Dialog,
   DialogContent,
   TextField,
+  TextareaAutosize,
   Grid,
   DialogTitle,
   DialogActions,
@@ -16,10 +17,10 @@ export default function ProductEdit({ data }) {
 
   const [datass, setDatass] = useState({
     id: data.id,
-    productName: null,
-    productDetails: null,
-    price: null,
-    SKU: null,
+    productName: data.productName,
+    productDetails: data.productDetails,
+    price: data.price,
+    SKU: data.SKU,
   });
 
   const handleChange = (e) => {
@@ -31,9 +32,9 @@ export default function ProductEdit({ data }) {
   };
 
   const handleUpdate = async () => {
-    await axios
-      .put("http://localhost:8000/updateLocal", { datass })
-      .then(setOpen(false));
+    await axios.put("http://localhost:8000/updateLocal", { datass });
+    setOpen(!open);
+    alert("Success");
   };
 
   return (
@@ -67,12 +68,13 @@ export default function ProductEdit({ data }) {
               margin="dense"
               label="Price"
             />
-            <TextField
+            <TextareaAutosize
+              rowsMin={3}
+              placeholder="Details"
               name="productDetails"
               autoFocus
               margin="dense"
               onChange={handleChange}
-              label="Details"
             />
           </Grid>
         </DialogContent>
