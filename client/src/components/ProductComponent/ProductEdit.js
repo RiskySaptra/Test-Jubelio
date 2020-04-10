@@ -12,7 +12,7 @@ import {
   DialogActions,
 } from "@material-ui/core";
 
-export default function ProductEdit({ data }) {
+export default function ProductEdit({ data, reRender }) {
   const [open, setOpen] = useState(false);
 
   const [datass, setDatass] = useState({
@@ -34,7 +34,7 @@ export default function ProductEdit({ data }) {
   const handleUpdate = async () => {
     await axios.put("http://localhost:8000/updateLocal", { datass });
     setOpen(!open);
-    alert("Success");
+    reRender();
   };
 
   return (

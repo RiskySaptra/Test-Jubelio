@@ -96,7 +96,6 @@ const Home = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [dataProduct, setDataProduct] = useState([]);
-  console.log(dataProduct.length);
 
   const [loading, setloading] = useState(true);
   const [source, setSource] = useState("");
@@ -120,8 +119,6 @@ const Home = () => {
       .post("http://localhost:8000/addAllLocal", { dataProduct })
       .then((res) => {
         setDataProduct(res.data);
-        console.log(res);
-
         setloading(false);
       });
   };
@@ -251,7 +248,12 @@ const Home = () => {
         <div className={classes.toolbar} />
         <Grid container justify="center" spacing={5}>
           {waitingData === true ? (
-            <ProductCard data={dataProduct} loading={loading} source={source} />
+            <ProductCard
+              data={dataProduct}
+              loading={loading}
+              source={source}
+              reRender={getDataLocal}
+            />
           ) : (
             <h2>Silahkan Pilih Sumber Data</h2>
           )}

@@ -3,7 +3,7 @@ import axios from "axios";
 
 import { Button, Dialog, DialogActions } from "@material-ui/core";
 
-export default function ProductDelete({ data }) {
+export default function ProductDelete({ data, reRender }) {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -15,7 +15,7 @@ export default function ProductDelete({ data }) {
       .delete("http://localhost:8000/deleteLocal", { data })
       .then(() => {
         setOpen(false);
-        window.location.reload();
+        reRender();
       });
   };
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-import idf, { toRupiah } from "indo-formatter";
+import { toRupiah } from "indo-formatter";
 import { Grid, Typography, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -32,9 +32,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductCard = ({ data, loading, source }) => {
-  const classes = useStyles();
+const ProductCard = ({ data, loading, source, reRender }) => {
+  // console.log(reRender);
 
+  const classes = useStyles();
   if (loading === false) {
     return (
       <>
@@ -84,8 +85,8 @@ const ProductCard = ({ data, loading, source }) => {
                         {source === "local" ? (
                           <Grid item>
                             <Grid container>
-                              <ProductDelete data={item} />
-                              <ProductEdit data={item} />
+                              <ProductDelete data={item} reRender={reRender} />
+                              <ProductEdit data={item} reRender={reRender} />
                             </Grid>
                           </Grid>
                         ) : (
