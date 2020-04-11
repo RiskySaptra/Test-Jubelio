@@ -3,7 +3,7 @@ import axios from "axios";
 
 import { Button, Dialog, DialogActions } from "@material-ui/core";
 
-export default function ProductDelete({ data, reRender }) {
+export default function ProductDelete({ data, getDataLocal }) {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -15,7 +15,7 @@ export default function ProductDelete({ data, reRender }) {
       .delete("http://localhost:8000/deleteLocal", { data })
       .then(() => {
         setOpen(false);
-        reRender();
+        getDataLocal();
       });
   };
 
@@ -27,10 +27,21 @@ export default function ProductDelete({ data, reRender }) {
       <Dialog open={open} onClose={handleClick}>
         <DialogActions>
           <p>Are you sure ?</p>
-          <Button onClick={handleDelete} color="primary">
+          <Button
+            size="small"
+            onClick={handleDelete}
+            variant="contained"
+            color="primary"
+          >
             Yes
           </Button>
-          <Button onClick={handleClick} color="primary" autoFocus>
+          <Button
+            size="small"
+            onClick={handleClick}
+            variant="contained"
+            color="primary"
+            autoFocus
+          >
             No
           </Button>
         </DialogActions>

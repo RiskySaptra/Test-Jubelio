@@ -2,44 +2,25 @@ import React from "react";
 
 import { toRupiah } from "indo-formatter";
 import { Grid, Typography, Paper } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 
+// components
+import { card } from "../Style";
 import DetailsDialog from "./ProductComponent/DetailsDialog";
 import ProductDelete from "./ProductComponent/ProductDelete";
 import ProductEdit from "./ProductComponent/ProductEdit";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    padding: "15px",
-    justifyItems: "center",
-  },
-  paper: {
-    padding: theme.spacing(1),
-    margin: theme.spacing(2),
-    elevation: 5,
-    width: "250px",
-    height: "400px",
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-  },
-  img: {
-    margin: "auto",
-    width: "100%",
-    height: "200px",
-  },
-}));
-
-const ProductCard = ({ data, loading, source, reRender }) => {
-  // console.log(reRender);
-
-  const classes = useStyles();
+const ProductCard = ({ data, loading, source, getDataLocal }) => {
+  const classes = card();
   if (loading === false) {
     return (
       <>
-        <Grid container direction="row" justify="center" alignItems="center">
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          spacing={5}
+        >
           {data.map((item) => (
             <Paper className={classes.paper} key={item.id}>
               <Grid
@@ -85,8 +66,14 @@ const ProductCard = ({ data, loading, source, reRender }) => {
                         {source === "local" ? (
                           <Grid item>
                             <Grid container>
-                              <ProductDelete data={item} reRender={reRender} />
-                              <ProductEdit data={item} reRender={reRender} />
+                              <ProductDelete
+                                data={item}
+                                getDataLocal={getDataLocal}
+                              />
+                              <ProductEdit
+                                data={item}
+                                getDataLocal={getDataLocal}
+                              />
                             </Grid>
                           </Grid>
                         ) : (

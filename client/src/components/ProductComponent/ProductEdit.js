@@ -12,7 +12,7 @@ import {
   DialogActions,
 } from "@material-ui/core";
 
-export default function ProductEdit({ data, reRender }) {
+export default function ProductEdit({ data, getDataLocal }) {
   const [open, setOpen] = useState(false);
 
   const [datass, setDatass] = useState({
@@ -34,7 +34,7 @@ export default function ProductEdit({ data, reRender }) {
   const handleUpdate = async () => {
     await axios.put("http://localhost:8000/updateLocal", { datass });
     setOpen(!open);
-    reRender();
+    getDataLocal();
   };
 
   return (
@@ -69,11 +69,11 @@ export default function ProductEdit({ data, reRender }) {
               label="Price"
             />
             <TextareaAutosize
-              rowsMin={3}
+              style={{ marginTop: "15px" }}
+              rowsMin={5}
               placeholder="Details"
               name="productDetails"
               autoFocus
-              margin="dense"
               onChange={handleChange}
             />
           </Grid>
