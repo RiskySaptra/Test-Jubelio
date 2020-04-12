@@ -2,8 +2,9 @@ const models = require("../models");
 const Product = models.product;
 
 exports.addAllLocal = async (req, h) => {
+  // console.log("tessssssssssssssssstt", req.payload);
   try {
-    const dataLocal = await Product.bulkCreate(req.payload.dataProduct, {
+    const dataLocal = await Product.bulkCreate(req.payload, {
       returning: true,
       updateOnDuplicate: [
         "productName",
@@ -51,7 +52,6 @@ exports.deleteLocal = async (req, h) => {
 };
 
 exports.updateLocal = async (req, h) => {
-  // console.log(req.payload);
   const { productName, image, productDetails, price, SKU } = req.payload.datass;
   try {
     await Product.update(

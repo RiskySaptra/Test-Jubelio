@@ -16,16 +16,16 @@ class ProductStore {
     this.loading = false;
   };
 
-  //   updateDataLocal = async () => {
-  //     this.waitingData = true;
-  //     this.loading = true;
-  //     const data = await axios.post("http://localhost:8000/addAllLocal", {
-  //       dataProduct,
-  //     });
-  //     this.source = "ext";
-  //     this.dataProduct = data.data;
-  //     this.loading = false;
-  //   };
+  updateDataLocal = async () => {
+    this.loading = true;
+    const data = await axios.post(
+      "http://localhost:8000/addAllLocal",
+      this.dataProduct
+    );
+    this.source = "ext";
+    this.dataProduct = data.data;
+    this.loading = false;
+  };
 
   getDataLocal = async () => {
     this.waitingData = true;
@@ -42,7 +42,7 @@ decorate(ProductStore, {
   source: observable,
   waitingData: observable,
   getData: action,
-  updateDataLocal: action,
+  updateDataLocal: action.bound,
   getDataLocal: action,
 });
 export default ProductStore;

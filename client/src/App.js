@@ -1,16 +1,13 @@
 import React from "react";
 
 import { CssBaseline } from "@material-ui/core";
+import { useStyles } from "./Style";
 
 // componets
 import HomeDrawer from "./components/HomeComponent/HomeDrawer";
 import ProductContent from "./components/HomeComponent/ProductContent";
-import { useStyles } from "./Style";
 
-const Home = () => {
-  // console.log(store.productStore.dataProduct);
-  // console.log(store);
-
+const App = () => {
   const classes = useStyles();
 
   return (
@@ -21,4 +18,4 @@ const Home = () => {
     </div>
   );
 };
-export default Home;
+export default App;

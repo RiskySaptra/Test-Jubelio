@@ -34,15 +34,7 @@ const HomeDrawer = observer((store) => {
   const classes = useStyles();
   const theme = useTheme();
 
-  const {
-    dataProduct,
-    loading,
-    source,
-    waitingData,
-    getData,
-    updateDataLocal,
-    getDataLocal,
-  } = store.productStore;
+  const { getData, updateDataLocal, getDataLocal } = store.productStore;
 
   const [open, setOpen] = React.useState(false);
 
@@ -145,12 +137,12 @@ const HomeDrawer = observer((store) => {
             </ListItemIcon>
             <ListItemText primary={"Add Product"} />
           </ListItem>
-          <ListItem button>
+          {/* <ListItem button>
             <ListItemIcon>
               <InboxIcon style={{ color: "white" }} />
             </ListItemIcon>
             <ListItemText primary={"// Update Elevenia"} />
-          </ListItem>
+          </ListItem> */}
         </List>
       </Drawer>
     </>
