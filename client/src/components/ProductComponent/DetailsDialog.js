@@ -3,7 +3,6 @@ import { withStyles } from "@material-ui/core/styles";
 import { Button, Dialog } from "@material-ui/core";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
-import MuiDialogActions from "@material-ui/core/DialogActions";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 import { IconButton } from "@material-ui/core";
@@ -45,13 +44,6 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-const DialogActions = withStyles((theme) => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(1),
-  },
-}))(MuiDialogActions);
-
 export default function DetailsDialog({ data }) {
   const [open, setOpen] = React.useState(false);
 
@@ -78,11 +70,6 @@ export default function DetailsDialog({ data }) {
             dangerouslySetInnerHTML={{ __html: data }}
           ></div>
         </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClick} color="primary">
-            Close
-          </Button>
-        </DialogActions>
       </Dialog>
     </div>
   );

@@ -2,11 +2,13 @@ import { action, observable, decorate } from "mobx";
 import axios from "axios";
 
 class ProductStore {
+  // init State
   dataProduct = [];
   loading = true;
   source = "";
   waitingData = false;
 
+  // action
   getData = async () => {
     this.waitingData = true;
     this.loading = true;
