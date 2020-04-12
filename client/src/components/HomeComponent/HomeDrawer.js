@@ -27,9 +27,22 @@ import AddBoxIcon from "@material-ui/icons/AddBox";
 // Style
 import { useStyles } from "../../Style";
 
-const HomeDrawer = ({ getData, updateDataLocal, getDataLocal }) => {
+// mobx
+import { observer, inject } from "mobx-react";
+
+const HomeDrawer = observer((store) => {
   const classes = useStyles();
   const theme = useTheme();
+
+  const {
+    dataProduct,
+    loading,
+    source,
+    waitingData,
+    getData,
+    updateDataLocal,
+    getDataLocal,
+  } = store.productStore;
 
   const [open, setOpen] = React.useState(false);
 
@@ -142,5 +155,5 @@ const HomeDrawer = ({ getData, updateDataLocal, getDataLocal }) => {
       </Drawer>
     </>
   );
-};
-export default HomeDrawer;
+});
+export default inject("productStore")(HomeDrawer);

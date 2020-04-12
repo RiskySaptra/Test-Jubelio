@@ -8,14 +8,20 @@ import ProductCard from "../ProductCard";
 // Style
 import { useStyles } from "../../Style";
 
-const ProductContent = ({
-  dataProduct,
-  loading,
-  source,
-  getDataLocal,
-  waitingData,
-}) => {
+// mobx
+import { observer, inject } from "mobx-react";
+
+const ProductContent = observer((store) => {
   const classes = useStyles();
+
+  const {
+    dataProduct,
+    loading,
+    source,
+    waitingData,
+    getDataLocal,
+  } = store.productStore;
+
   return (
     <>
       <Grid className={classes.content}>
@@ -33,5 +39,5 @@ const ProductContent = ({
       </Grid>
     </>
   );
-};
-export default ProductContent;
+});
+export default inject("productStore")(ProductContent);

@@ -9,8 +9,13 @@ import DetailsDialog from "./ProductComponent/DetailsDialog";
 import ProductDelete from "./ProductComponent/ProductDelete";
 import ProductEdit from "./ProductComponent/ProductEdit";
 
-const ProductCard = ({ data, loading, source, getDataLocal }) => {
+// mobx
+import { observer, inject } from "mobx-react";
+
+const ProductCard = observer((store) => {
   const classes = card();
+  const { dataProduct, loading, source, getDataLocal } = store.productStore;
+
   if (loading === false) {
     return (
       <>
@@ -21,7 +26,7 @@ const ProductCard = ({ data, loading, source, getDataLocal }) => {
           alignItems="center"
           spacing={5}
         >
-          {data.map((item) => (
+          {dataProduct.map((item) => (
             <Paper className={classes.paper} key={item.id}>
               <Grid
                 container
@@ -96,5 +101,5 @@ const ProductCard = ({ data, loading, source, getDataLocal }) => {
       </>
     );
   }
-};
-export default ProductCard;
+});
+export default inject("productStore")(ProductCard);
