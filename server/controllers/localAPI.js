@@ -2,7 +2,6 @@ const models = require("../models");
 const Product = models.product;
 
 exports.addAllLocal = async (req, h) => {
-  // console.log("tessssssssssssssssstt", req.payload);
   try {
     const dataLocal = await Product.bulkCreate(req.payload, {
       returning: true,

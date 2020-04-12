@@ -5,24 +5,36 @@ exports.indexData = async (req, h) => {
   try {
     // headers
     const value = { openapikey: "721407f393e84a28593374cc2b347a98" };
-    // parameters
-    const page = 4;
 
     //config xml2json
     const options = {
       object: true,
     };
 
-    const { data } = await axios.get(
-      `http://api.elevenia.co.id/rest/prodservices/product/listing?page=${page}`,
+    // var data = [];
+    // for (i = 1; i <= 4; i++) {
+    //   const rslt = await axios.get(
+    //     `http://api.elevenia.co.id/rest/prodservices/product/listing?page=${i}`,
+    //     {
+    //       headers: value,
+    //     }
+    //   );
+    //   const list = await parser.toJson(rslt.data, options);
+    //   const params = list.Products.product.map(({ prdNo }) => prdNo);
+
+    //   data.push(params);
+    // }
+    const rslt = await axios.get(
+      `http://api.elevenia.co.id/rest/prodservices/product/listing?page=4`,
       {
         headers: value,
       }
     );
-
-    const list = await parser.toJson(data, options);
+    const list = await parser.toJson(rslt.data, options);
     const params = list.Products.product.map(({ prdNo }) => prdNo);
 
+    // var merged = [].concat.apply([], data);
+    // console.log(merged.length);
     let dataElevenia = [];
     let promises = [];
     for (i = 0; i < params.length; i++) {
