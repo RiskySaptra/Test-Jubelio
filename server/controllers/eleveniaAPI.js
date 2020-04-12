@@ -11,43 +11,35 @@ exports.indexData = async (req, h) => {
       object: true,
     };
 
-    // var data = [];
-    // for (i = 1; i <= 4; i++) {
-    //   const rslt = await axios.get(
-    //     `http://api.elevenia.co.id/rest/prodservices/product/listing?page=${i}`,
-    //     {
-    //       headers: value,
-    //     }
-    //   );
-    //   const list = await parser.toJson(rslt.data, options);
-    //   const params = list.Products.product.map(({ prdNo }) => prdNo);
+    var data = [];
+    for (i = 1; i <= 4; i++) {
+      const rslt = await axios.get(
+        `http://api.elevenia.co.id/rest/prodservices/product/listing?page=${i}`,
+        {
+          headers: value,
+        }
+      );
+      const list = await parser.toJson(rslt.data, options);
+      const params = list.Products.product.map(({ prdNo }) => prdNo);
 
-    //   data.push(params);
-    // }
-    const rslt = await axios.get(
-      `http://api.elevenia.co.id/rest/prodservices/product/listing?page=4`,
-      {
-        headers: value,
-      }
-    );
-    const list = await parser.toJson(rslt.data, options);
-    const params = list.Products.product.map(({ prdNo }) => prdNo);
+      data.push(params);
+    }
 
-    // var merged = [].concat.apply([], data);
-    // console.log(merged.length);
+    var merged = [].concat.apply([], data);
+
     let dataElevenia = [];
     let promises = [];
-    for (i = 0; i < params.length; i++) {
+    for (i = 0; i < merged.length; i++) {
       promises.push(
         Promise.all([
           axios.get(
-            `http://api.elevenia.co.id/rest/prodservices/product/details/${params[i]}`,
+            `http://api.elevenia.co.id/rest/prodservices/product/details/${merged[i]}`,
             {
               headers: value,
             }
           ),
           axios.get(
-            ` http://api.elevenia.co.id/rest/prodmarketservice/prodmarket/stck/${params[i]}`,
+            ` http://api.elevenia.co.id/rest/prodmarketservice/prodmarket/stck/${merged[i]}`,
             {
               headers: value,
             }
