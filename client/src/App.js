@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { CssBaseline } from "@material-ui/core";
 import { useStyles } from "./Style";
@@ -7,8 +7,18 @@ import { useStyles } from "./Style";
 import HomeDrawer from "./components/HomeComponent/HomeDrawer";
 import ProductContent from "./components/HomeComponent/ProductContent";
 
-const App = () => {
+// mobx
+import { observer, inject } from "mobx-react";
+
+const App = observer((store) => {
   const classes = useStyles();
+
+  // inject dulu ke sini
+  const { getDataLocal } = store.productStore;
+
+  // useEffect(() => {
+  //   getDataLocal();
+  // }, [getDataLocal]);
 
   return (
     <div className={classes.root}>
@@ -17,5 +27,5 @@ const App = () => {
       <ProductContent />
     </div>
   );
-};
-export default App;
+});
+export default inject("productStore")(App);
