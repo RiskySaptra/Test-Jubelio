@@ -17,6 +17,7 @@ const ProductCard = observer((store) => {
   const { dataProduct, loading, source, getDataLocal } = store.productStore;
 
   if (loading === false) {
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/MobX-integration
     return (
       <>
@@ -61,6 +62,8 @@ const ProductCard = observer((store) => {
                         {item.productName}
                       </Typography>
 =======
+=======
+>>>>>>> master
     if (data.length === 0) {
       return (
         <>
@@ -94,7 +97,10 @@ const ProductCard = observer((store) => {
                         alt={item.productName}
                         src={item.image}
                       />
+<<<<<<< HEAD
 >>>>>>> empty check
+=======
+>>>>>>> master
                     </Grid>
                   </Grid>
                   <Grid item xs={5} style={{ maxWidth: "100%" }}>
